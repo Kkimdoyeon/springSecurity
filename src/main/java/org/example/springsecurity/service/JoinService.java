@@ -1,6 +1,8 @@
 package org.example.springsecurity.service;
 
 import org.example.springsecurity.dto.JoinDTO;
+import org.example.springsecurity.entity.UserEntity;
+import org.example.springsecurity.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,12 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class JoinService {
 
-//    @Autowired
-//    private UserRepository userRepository;
-//
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
-//
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     public void joinProcess(JoinDTO joinDTO) {
 
@@ -25,14 +27,13 @@ public class JoinService {
         }
 
 
+        UserEntity data = new UserEntity();
 
-//        UserEntity data = new UserEntity();
-//
-//        data.setUsername(joinDTO.getUsername());
-//        data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
-//        data.setRole("ROLE_USER");
-//
-//
-//        userRepository.save(data);
+        data.setUsername(joinDTO.getUsername());
+        data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
+        data.setRole("ROLE_USER");
+
+
+        userRepository.save(data);
     }
 }
